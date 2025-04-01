@@ -1,5 +1,12 @@
+//verificador de senhas
+const backgroundVerificador = document.querySelector('.verificador-section');
+const backgroundGerador = document.querySelector('.gerador-section');
+
 const inputSenha = document.getElementById('senha');
-inputSenha.addEventListener("input", verificarSenha);
+inputSenha.addEventListener('input', verificarSenha);
+inputSenha.addEventListener('paste', () => {
+    setTimeout(verificarSenha, 0);
+})
 
 const spanResult = document.getElementById('seguranca-status');
 
@@ -22,6 +29,7 @@ function analiseForcaSenha(senha) {
 
     if (senha === '') {
         spanResult.textContent = '';
+        backgroundVerificador.style.backgroundColor = '#16161a';
         return;
     }
 
@@ -34,6 +42,7 @@ function analiseForcaSenha(senha) {
         temSimbolo
     ) {
         spanResult.textContent = 'Segura';
+        backgroundVerificador.style.backgroundColor = '#2ecc71';
     }
     // Verifica se a senha é "Forte"
     else if (
@@ -43,6 +52,7 @@ function analiseForcaSenha(senha) {
         temNumero
     ) {
         spanResult.textContent = 'Forte';
+        backgroundVerificador.style.backgroundColor = '#27ae60';
     }
     // Verifica se a senha é "Média"
     else if (
@@ -52,13 +62,37 @@ function analiseForcaSenha(senha) {
         temMinuscula
     ) {
         spanResult.textContent = 'Média';
+        backgroundVerificador.style.backgroundColor = '#f39c12';
     }
     // Verifica se a senha é "Fraca"
-    else if (
-        senha.length <= 5 ||
-        (temMinuscula && temNumero && !temMaiuscula && !temSimbolo) || // Apenas minúsculas e números
-        (temMaiuscula && temNumero && !temMinuscula && !temSimbolo)    // Apenas maiúsculas e números
-    ) {
+    else {
         spanResult.textContent = 'Fraca';
+        backgroundVerificador.style.backgroundColor = '#e74c3c';
     }
+}
+
+//gerador de senhas
+const buttonGerar = document.getElementById('gerar');
+buttonGerar.addEventListener('click', gerarSenha);
+
+function gerarSenha() {
+    const senhaPrint = document.getElementById('senha-gerada');
+    const inputTamanho = parseInt(document.getElementById('tamanho').value);
+    const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_=+';
+    let senha = '';
+
+    if (isNaN(inputTamanho) || inputTamanho < 4 || inputTamanho > 128) {
+        alert('Por favor, insira um tamanho válido entre 4 e 128.');
+        return;
+    }
+
+    for (let i = 0; i < inputTamanho; i++) {
+        let indice = Math.floor(Math.random() * caracteres.length);
+        senha += caracteres[indice];
+        
+    }
+
+    senhaPrint.textContent = senha;
+    document.getElementById('tamanho').value = '';
+
 }

@@ -21,6 +21,8 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    transition: background-color 0.3s ease-in-out;
 }
 
 .verificador-section h1 {
@@ -49,11 +51,11 @@ main {
 }
 
 #seguranca-status {
-
     color: #fffffe;
     padding: 10px 20px;
     position: absolute;
     bottom: 195px;
+    font-size: 22px;
 }
 
 .gerador-section {
@@ -99,11 +101,53 @@ main {
     padding: 10px 20px;
     border-radius: 12px;
     cursor: pointer;
-    transition: transform 0.2s ease-in-out;
+    transition: transform 0.1s ease-in-out;
     position: absolute;
-    bottom: 195px;
+    bottom: 230px;
 }
 
-#gerar:hover {
-    transform: scale(1.05);
+#gerar:active {
+    transform: scale(0.95);
+}
+
+#senha-gerada {
+    color: #fffffe;
+    position: absolute;
+    top: 525px;
+    text-align: center;
+    font-size: 18px;
+    width: 300px;
+    max-height: 150px;
+    overflow-y: auto;
+    overflow-wrap: break-word;
+}
+
+@media screen and (max-width: 768px) {
+    main {
+        flex-direction: column;
+    }
+
+    .verificador-section, .gerador-section {
+        width: 100vw;
+        height: 100vh;
+    }
+
+    #gerar {
+        position: relative;
+        bottom: auto;
+        margin-top: 20px;
+    }
+
+    #senha-gerada {
+        position: relative;
+        top: auto;
+        margin-top: 20px;
+    }
+
+    #seguranca-status {
+        position: relative;
+        bottom: auto;
+        margin-top: 20px;
+    }
+    
 }

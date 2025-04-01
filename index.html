@@ -13,14 +13,14 @@
         <section class="verificador-section">
             <h1>Verificador de Senhas</h1>
             <label for="senha">Digite a senha:</label>
-            <input type="text" id="senha">
-            <span id="seguranca-status">Senha fraca</span>
+            <input type="text" id="senha" autocomplete="off">
+            <span id="seguranca-status"></span>
         </section>
 
         <section class="gerador-section">
             <h1>Gerador de Senhas</h1>
             <label for="tamanho">Tamanho da senha:</label>
-            <input type="text" id="tamanho" min="1" max="100" required>
+            <input type="text" id="tamanho" min="1" max="100" required autocomplete="off">
             <span id="gerar">Gerar Senha</span>
             <div id="senha-gerada"></div>
         </section>
